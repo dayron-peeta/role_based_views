@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <!-- Vista para usuarios del Rol 1 -->
+    <record id="view_partner_form_rol1" model="ir.ui.view">
+      <field name="name">res.partner.form.rol1</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+      <!-- Solo usuarios en el grupo Rol 1 verán esta parte de la vista -->
+      <xpath expr="//field[@name='category_id']" position="after">
+      <field name="campo_para_el_rol_1" groups="role_based_views.group_rol1"/>
+      </xpath>
+      </field>
+    </record>
+
+
+    <!-- Vista para usuarios del Rol 2 -->
+    <record id="view_partner_form_rol2" model="ir.ui.view">
+      <field name="name">res.partner.form.rol1</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//sheet" position="inside">
+          <!-- Solo usuarios en el grupo Rol 2 verán esta parte de la vista -->
+          <group groups="role_based_views.group_rol2" string="Información Exclusiva Rol 2">
+            <field name="campo_para_el_rol_2" />
+          </group>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>
